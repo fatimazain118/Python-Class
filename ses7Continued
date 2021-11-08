@@ -1,0 +1,105 @@
+empty = {}
+print(type(empty))
+
+emptySet = set()
+print(type(emptySet))
+
+#here different value will be having diff values of hash and same element will be having same value of hash same hash function will be coming out so when it will see it,s already computed then it'll not print again same element
+#Sets don't have duplicate reason is above
+mySet = {2,3,5,5,6,6,7}
+print(mySet)
+
+mySet.add(4)
+print(mySet)
+
+mySet.add('70')  #here hash value of "70" is diff thats why added to the set
+print(mySet)
+
+# mySet.remove(700) #shows error if element is not present in the set
+# print(mySet)
+
+mySet.discard(70)  #will not show error if element is not present in the set
+print(mySet)
+
+mySet = {1,2,3,4,5,6}
+yourSet = {4,5,6}
+
+print(yourSet.issubset(mySet))
+print(mySet.issubset(yourSet))
+
+print("Union : ", yourSet.union(mySet))
+print("intersection : ", yourSet.intersection(mySet))
+
+print("Diff : ", mySet.difference(yourSet))
+print("Diff : ", yourSet.difference(mySet))
+
+print("sym Diff : ", mySet.symmetric_difference(yourSet))
+print("sym Diff : ", yourSet.symmetric_difference(mySet))
+
+#Sets are Iterable
+MySet = {1, 2, 3, (1, 2), "myStr"}
+print(MySet)
+
+MySet.add(0)
+for item in MySet:
+    print(item)
+
+# myTuple = (1, 2, [2, 3])  #tuple is immutable but can have mutable object in it like list
+# myset = {1, 2, 3, (1, 2), 'myStr', myTuple}
+# print(myset)    #shows erorr unhashable as myTuple has mutable objects that cann't be added to set as in future they can be edit and hence unhashable
+
+myset = {1, 2, 3, 'myStr'}
+myset.update("one More element")
+#Above update adds individual chars from the string
+print("After updating : ", myset)  #it unpack the string and update it, or we can say it do union of itself with the set
+
+myset.add('similar element')
+print("after adding : ", myset)
+
+#enumerator
+for id, val in enumerate(mySet):
+    print(id, val)
+
+for enumTuple in enumerate(mySet):
+    print(enumTuple)
+    
+________________________________________________________________________________________________________________
+*******Output***********************
+<class 'dict'>
+<class 'set'>
+{2, 3, 5, 6, 7}
+{2, 3, 4, 5, 6, 7}
+{2, 3, 4, 5, 6, 7, '70'}
+{2, 3, 4, 5, 6, 7, '70'}
+True
+False
+Union :  {1, 2, 3, 4, 5, 6}
+intersection :  {4, 5, 6}
+Diff :  {1, 2, 3}
+Diff :  set()
+sym Diff :  {1, 2, 3}
+sym Diff :  {1, 2, 3}
+{1, 2, 3, (1, 2), 'myStr'}
+0
+1
+2
+3
+(1, 2)
+myStr
+After updating :  {1, 2, 3, 'M', ' ', 'm', 'myStr', 'n', 'l', 'o', 'r', 't', 'e'}
+after adding :  {1, 2, 3, 'M', ' ', 'm', 'myStr', 'n', 'l', 'similar element', 'o', 'r', 't', 'e'}
+0 1
+1 2
+2 3
+3 4
+4 5
+5 6
+(0, 1)
+(1, 2)
+(2, 3)
+(3, 4)
+(4, 5)
+(5, 6)
+
+
+
