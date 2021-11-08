@@ -1,0 +1,26 @@
+#list
+
+import datetime
+
+numTuple = (1,2,3)
+(num1, num2, num3) = numTuple
+
+print(num1, num2, num3)
+
+def today():
+    today = datetime.date.today()
+    print(type(today))
+    return today.day, today.month, today.year
+
+print(type(today))
+today = today()
+print(type(today))
+
+print("Today is : ", today)
+_______________________________________________________
+*******Output**************
+1 2 3
+<class 'function'>
+<class 'datetime.date'>
+<class 'tuple'>
+Today is :  (8, 11, 2021)
