@@ -1,0 +1,96 @@
+#print function knows what type of object is passed to it and python implementation took care of it.
+import copy
+
+numList = [2,3,4,5]    #we just store refferences to these object in the list
+addList = [7,8,9]
+
+numList.extend(addList)
+print("Extended numList: ", numList)
+print("AddList", addList)
+
+numList.insert(0,5)  #insert at 0th position 5
+print("2 :", numList)
+
+numList.insert(len(numList), 6)  #length ki end me 6 insert
+print("3 :", numList)
+
+numList.insert(len(numList)+100, 10)   #like slicing it will also not give error in limit exceeding
+print("4 :", numList)
+
+newNumList = numList       #Shallow copy of object (means only label has changed)
+print("5 :", newNumList)
+
+newNumList.extend(addList)
+print("6 :", newNumList)
+
+print("7 :", numList)  #we haven't created two list we just have created new link pointed to numList, we cann't manipulate newNumList without effecting numList
+print(id(numList))
+print(id(newNumList))
+
+#creating deep copy (means creating a new object itself)
+realNewNumList = numList[:]  #now we can modify individually
+print("8 : ", realNewNumList)
+
+print(id(realNewNumList))
+print(id(numList))
+
+deepCopyList = copy.deepcopy(realNewNumList)
+print("9 : ", deepCopyList)
+print(id(deepCopyList))
+print(id(realNewNumList))
+
+subList = numList[:4]
+print("10 : ", subList)
+
+subList.remove(4)
+print("11 : ", subList)
+
+#flattening list
+list_of_lists = [[1,2],[3,4],[5,6]]
+fla_list = [y for x in list_of_lists for y in x]   #list comprehension
+print("12 : ", fla_list)
+
+#transpose of matrix
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+transposeMatrix = [[row[i] for row in matrix] for i in range(0,3)]
+print("13 : ", transposeMatrix)
+
+#generating list_of_lists
+
+list_of_Lists = [[0 for i in range(0,3)] for j in range(0,4)]
+print("14 : ", list_of_Lists)
+
+#converting deg to radian
+Degrees = [0, 90.0, 180.0, 270.0, 360.0]
+
+def deg_to_rad(deg):
+    return (3.14/180.0*deg)
+
+radians = [deg_to_rad(deg) for deg in Degrees]
+print("15 : ", radians)
+
+________________________________________________________________________________________
+*********Output***********
+
+Extended numList:  [2, 3, 4, 5, 7, 8, 9]
+AddList [7, 8, 9]
+2 : [5, 2, 3, 4, 5, 7, 8, 9]
+3 : [5, 2, 3, 4, 5, 7, 8, 9, 6]
+4 : [5, 2, 3, 4, 5, 7, 8, 9, 6, 10]
+5 : [5, 2, 3, 4, 5, 7, 8, 9, 6, 10]
+6 : [5, 2, 3, 4, 5, 7, 8, 9, 6, 10, 7, 8, 9]
+7 : [5, 2, 3, 4, 5, 7, 8, 9, 6, 10, 7, 8, 9]
+1937315032640
+1937315032640
+8 :  [5, 2, 3, 4, 5, 7, 8, 9, 6, 10, 7, 8, 9]
+1937315032320
+1937315032640
+9 :  [5, 2, 3, 4, 5, 7, 8, 9, 6, 10, 7, 8, 9]
+1937315032192
+1937315032320
+10 :  [5, 2, 3, 4]
+11 :  [5, 2, 3]
+12 :  [1, 2, 3, 4, 5, 6]
+13 :  [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+14 :  [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+15 :  [0.0, 1.5700000000000003, 3.1400000000000006, 4.710000000000001, 6.280000000000001]
